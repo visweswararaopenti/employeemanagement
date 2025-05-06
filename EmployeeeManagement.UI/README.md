@@ -1,2 +1,2 @@
 # employeemanagement
-this project handles the employee management
+this project handles the employee management UI
