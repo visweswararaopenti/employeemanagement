@@ -9,25 +9,25 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userid;  // ✅ match this with the DB column name
+
     private String username;
     private String password;
 
-    // ✅ No-args constructor (required)
     public User() {}
 
-    // (Optional) All-args constructor
-    public User(Long id, String username, String password) {
-        this.id = id;
+    public User(Long userid, String username, String password) {
+        this.userid = userid;
         this.username = username;
         this.password = password;
     }
 
     // Getters and setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getUserid() { return userid; }
+    public void setUserid(Long userid) { this.userid = userid; }
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }
