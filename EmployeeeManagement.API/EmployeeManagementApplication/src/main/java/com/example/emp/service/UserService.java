@@ -15,6 +15,15 @@ import com.example.emp.repository.UserRepository;
                 if (user != null && user.getPassword().equals(password)) {
                 return user;
                 }
+                
                   return null;
            }
+           public boolean existsByUsername(String username) {
+        	    return userRepository.findByUsername(username) != null;
+        	}
+
+        	public void registerUser(User user) {
+        	    userRepository.save(user); // Save user to DB
+        	}
+
 }
