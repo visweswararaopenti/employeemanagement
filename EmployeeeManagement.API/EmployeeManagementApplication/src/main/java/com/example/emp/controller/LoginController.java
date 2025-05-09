@@ -17,6 +17,7 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
+<<<<<<< Updated upstream
 	@PostMapping("/api/login")
 	public ResponseEntity<String> login(@RequestBody User usermodel) {
 	    User user = userService.validateUser(usermodel.getUsername(),usermodel.getPassword());
@@ -27,3 +28,30 @@ public class LoginController {
 	    }
 	}
 }
+=======
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/api/login")
+    public ResponseEntity<String> login(@RequestBody User usermodel) {
+        User user = userService.validateUser(usermodel.getUsername(), usermodel.getPassword());
+        if (user != null) {
+            return ResponseEntity.ok("Login successful for user: " + user.getUsername());
+        } else {
+            return ResponseEntity.status(401).body("Invalid username or password");
+        }
+    }
+    
+    @PostMapping("/api/signup")
+    public ResponseEntity<String> signup(@RequestBody User userModel) {
+        if (userService.existsByUsername(userModel.getUsername())) {
+            return ResponseEntity.status(409).body("Username already exists.");
+        }
+
+        userService.registerUser(userModel);
+        return ResponseEntity.ok("User registered successfully.");
+    }
+
+    
+}
+>>>>>>> Stashed changes
