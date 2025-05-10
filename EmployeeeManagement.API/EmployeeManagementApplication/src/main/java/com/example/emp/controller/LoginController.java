@@ -24,13 +24,4 @@ public class LoginController {
         }
     }
 
-    @PostMapping("/api/signup")
-    public ResponseEntity<String> signup(@RequestBody User userModel) {
-        if (userService.existsByUsername(userModel.getUsername())) {
-            return ResponseEntity.status(409).body("Username already exists.");
-        }
-
-        userService.registerUser(userModel);
-        return ResponseEntity.ok("User registered successfully.");
-    }
 }
