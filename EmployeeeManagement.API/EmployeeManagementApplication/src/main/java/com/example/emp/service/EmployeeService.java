@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
@@ -19,6 +20,11 @@ public class EmployeeService {
 	}
 
 	public List<Employee> getRecentHires() {
-		return employeeRepository.findTop5ByOrderByDateOfJoiningDesc();
+		LocalDateTime thirtyDaysAgo = LocalDateTime.now().minusDays(30);
+
+		return employeeRepository.findAll().stream()
+				.filter(emp -> emp.getDateOfJoining() != null && emp.getDateOfJoining().isAfter(thirtyDaysAgo))
+				.collect(Collectors.toList());
+
 	}
 }
