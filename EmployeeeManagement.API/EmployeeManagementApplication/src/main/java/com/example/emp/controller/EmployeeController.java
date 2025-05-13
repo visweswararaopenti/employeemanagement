@@ -1,12 +1,16 @@
 package com.example.emp.controller;
 
-import com.example.emp.model.Employee;
-import com.example.emp.service.EmployeeService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.example.emp.model.Employee;
+import com.example.emp.service.EmployeeService;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -24,5 +28,10 @@ public class EmployeeController {
 	@GetMapping("/recent-hires")
 	public ResponseEntity<List<Employee>> getRecentHires() {
 		return ResponseEntity.ok(employeeService.getRecentHires());
+	}
+	
+	@GetMapping("/all-employees")
+	public ResponseEntity<List<Employee>> getAllEmployees() {
+		return ResponseEntity.ok(employeeService.getAllEmployees());
 	}
 }
