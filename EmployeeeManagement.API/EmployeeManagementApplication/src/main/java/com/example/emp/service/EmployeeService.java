@@ -3,6 +3,7 @@ package com.example.emp.service;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +40,19 @@ public class EmployeeService {
 	public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
+	
+	public Employee updateEmployee(Integer id, Employee employee) {
+        Optional<Employee> existingEmployee = employeeRepository.findById(id);
+        if (existingEmployee.isPresent()) {
+            Employee emp = existingEmployee.get();
+            emp.setEmpname(employee.getEmpname());
+            emp.setDob(employee.getDob());
+            emp.setDateOfJoining(employee.getDateOfJoining());
+            emp.setDepartment(employee.getDepartment());
+            return employeeRepository.save(emp);
+        }
+        return null;
+    }
+	
+	
 }
