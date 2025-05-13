@@ -54,5 +54,13 @@ public class EmployeeService {
         return null;
     }
 	
+	public boolean deleteEmployee(Integer id) {
+        if (employeeRepository.existsById(id)) {
+            employeeRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+	
 	
 }
