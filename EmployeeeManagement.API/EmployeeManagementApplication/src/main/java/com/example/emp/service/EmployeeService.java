@@ -62,5 +62,10 @@ public class EmployeeService {
         return false;
     }
 	
+	public Employee getEmployeeById(Integer id) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+        return employee.orElse(null);
+    }
+	
 	
 }

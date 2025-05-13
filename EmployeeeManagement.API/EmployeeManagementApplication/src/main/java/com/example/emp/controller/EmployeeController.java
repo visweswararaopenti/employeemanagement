@@ -64,6 +64,15 @@ public class EmployeeController {
 	    }
 	    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id) {
+	    Employee employee = employeeService.getEmployeeById(id);
+	    if (employee != null) {
+	        return ResponseEntity.ok(employee);
+	    }
+	    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	}
 
 
 }
