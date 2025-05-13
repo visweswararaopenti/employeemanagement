@@ -4,8 +4,10 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.example.emp.model.Employee;
 import com.example.emp.repository.EmployeeRepository;
 
@@ -32,5 +34,9 @@ public class EmployeeService {
 	
 	public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
+    }
+	
+	public Employee saveEmployee(Employee employee) {
+        return employeeRepository.save(employee);
     }
 }
