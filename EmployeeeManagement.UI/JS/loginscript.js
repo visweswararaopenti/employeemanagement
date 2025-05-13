@@ -25,7 +25,7 @@ async function login() {
             successMsg.style.display = "block";
             alert("Login successful!");
             setTimeout(() => {
-                window.location.href = "dashbord.html";
+                window.location.href = "dashboard.html";
             }, 2000);
         } else {
             errorMsg.textContent = text;
