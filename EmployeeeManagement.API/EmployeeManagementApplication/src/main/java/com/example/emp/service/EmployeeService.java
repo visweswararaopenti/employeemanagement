@@ -1,14 +1,13 @@
 package com.example.emp.service;
 
-import com.example.emp.model.Employee;
-import com.example.emp.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.example.emp.model.Employee;
+import com.example.emp.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
@@ -30,4 +29,8 @@ public class EmployeeService {
 				.collect(Collectors.toList());
 
 	}
+	
+	public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
 }
