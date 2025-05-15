@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Employee</title>
+  <link rel="stylesheet" href="../CSS/employee.css">
+</head>
+<body>
+ 
+  <div class="sidebar">
+      <h2>Employee System</h2>
+      <button onclick="location.href='Dashboard.html'">Dashboard</button>
+      <button onclick="location.href='GetAllEmployees.html'">Employees</button>
+      <button onclick="location.href='department.html'">Departments</button>
+      <button onclick="logout()" style="margin-top:auto; background-color:#e74c3c;">Logout</button>
+  </div>
+
+  <div class="content">
+      <div class="form-container">
+          <h2>Create Employee</h2>
+          <div class="form-group">
+              <label for="empname">Employee Name:</label>
+              <input type="text" id="empname" placeholder="Enter employee name" required />
+          </div>
+          <div class="form-group">
+              <label for="dob">Date of Birth:</label>
+              <input type="date" id="dob" required />
+          </div>
+          <div class="form-group">
+              <label for="doj">Date of Joining:</label>
+              <input type="datetime-local" id="doj" required />
+          </div>
+          <div class="form-group">
+              <label for="deptid">Department ID:</label>
+              <input type="number" id="deptid" placeholder="Enter department ID" required />
+          </div>
+          <button onclick="createEmployee()">Add Employee</button>
+          <p id="error-message" style="color:red;"></p>
+          <button onclick="loadPage('../HTML/GetAllEmployees.html')">Back to List</button>
+      </div>
+  </div>
+
+  <footer>
+      © 2025 Employee Management System
+  </footer>
+
+  <script src="../JS/employee.js"></script>
+  <script>
+    console.log("employee.js script tag loaded");
+  </script>
+</body>
+</html>
