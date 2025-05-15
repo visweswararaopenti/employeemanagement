@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../CSS/employee.css">
 </head>
 <body>
-
     <div class="sidebar">
         <h2>Employee System</h2>
         <button onclick="location.href='Dashboard.html'">Dashboard</button>
@@ -20,7 +19,15 @@
             <button onclick="loadEmployees()">Load All Employees</button>
         </div>
 
-    <h2 style="text-align: center;">Employee List</h2>
+        <div class="button-container">
+            <button onclick="window.location.href='../HTML/CreateEmployee.html'" class="create-btn large-btn">
+                Create Employee
+            </button>
+        </div>
+
+        <div class="heading-box">
+            <h2 style="text-align: center;">Employee List</h2>
+        </div>
 
         <table id="employeeTable" style="display: none;">
             <thead>
@@ -32,13 +39,14 @@
                     <th>Department</th>
                 </tr>
             </thead>
+            
             <tbody id="employeeBody">
             </tbody>
         </table>
     </div>
 
     <footer>
-        &copy; 2025 Employee Management System
+        © 2025 Employee Management System
     </footer>
 
     <script src="../JS/employee.js"></script>
