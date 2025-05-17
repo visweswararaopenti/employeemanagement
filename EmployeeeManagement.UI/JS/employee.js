@@ -82,4 +82,3 @@ function editEmployee(id) {
     window.location.href = "../HTML/updateemp.html";
 }
 
-
