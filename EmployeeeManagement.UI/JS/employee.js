@@ -10,7 +10,7 @@ function loadEmployees() {
             tbody.innerHTML = "";
 
             if (!data || data.length === 0) {
-                tbody.innerHTML = "<tr><td colspan='5'>No employees found.</td></tr>";
+                tbody.innerHTML = "<tr><td colspan='6'>No employees found.</td></tr>";
                 table.style.display = "table";
                 return;
             }
@@ -23,6 +23,10 @@ function loadEmployees() {
                     <td>${emp.dob || 'N/A'}</td>
                     <td>${emp.dateOfJoining || 'N/A'}</td>
                     <td>${emp.department ? emp.department.deptname : 'N/A'}</td>
+                    <td class="action-buttons">
+                        <button onclick="editEmployee(${emp.empid})">Edit</button>
+                       
+                    </td>
                 `;
                 tbody.appendChild(row);
             });
@@ -31,7 +35,7 @@ function loadEmployees() {
         })
         .catch(error => {
             console.error("Error loading employees:", error);
-            alert("Failed to load employees. Check the console for details.");
+            alert("Failed to load employees. Check console.");
         });
 }
 
@@ -41,22 +45,17 @@ function createEmployee() {
     const doj = document.getElementById("doj").value;
     const deptId = document.getElementById("deptid").value;
 
-    
     if (!empName || !dob || !doj || !deptId) {
         document.getElementById("error-message").innerText = "All fields are required!";
         return;
     }
 
-    const formattedDob = dob; 
-    const formattedDoj = new Date(doj).toISOString(); 
     const employeeData = {
         empname: empName,
-        dob: formattedDob,
-        dateOfJoining: formattedDoj,
+        dob: dob,
+        dateOfJoining: new Date(doj).toISOString(),
         department: { deptid: parseInt(deptId) }
     };
-
-    console.log("Sending employee data:", JSON.stringify(employeeData, null, 2));
 
     fetch("http://localhost:8083/api/employees/add", {
         method: "POST",
@@ -64,32 +63,23 @@ function createEmployee() {
         body: JSON.stringify(employeeData)
     })
     .then(response => {
-        if (!response.ok) {
-            return response.text().then(text => {
-                throw new Error(`HTTP error! Status: ${response.status}, Message: ${text}`);
-            });
-        }
+        if (!response.ok) throw new Error("Failed to add employee");
         return response.json();
     })
     .then(data => {
-        console.log("Employee added successfully:", data);
         alert("Employee added successfully!");
-        loadPage('../HTML/GetAllEmployees.html');
+        window.location.href = "../HTML/GetAllEmployees.html";
     })
     .catch(error => {
         console.error("Error adding employee:", error);
-        document.getElementById("error-message").innerText = "Failed to add employee: " + error.message;
-        
+        document.getElementById("error-message").innerText = "Error: " + error.message;
     });
 }
 
-function loadPage(url) {
-    console.log("Redirecting to:", url);
-    window.location.href = url;
+
+function editEmployee(id) {
+    localStorage.setItem("editEmpId", id);
+    window.location.href = "../HTML/updateemp.html";
 }
 
-function logout() {
-    console.log("Logging out...");
-    window.location.href = 'login.html'; 
-}
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Employee</title>
+    <link rel="stylesheet" href="../CSS/updateemp.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Employee System</h2>
+        <button onclick="location.href='dashboard.html'">Dashboard</button>
+        <button onclick="location.href='GetAllEmployees.html'">Employees</button>
+        <button onclick="location.href='department.html'">Departments</button>
+        <button onclick="logout()" style="margin-top:auto; background-color:#e74c3c;">Logout</button>
+    </div>
+
+    <div class="content">
+        <h2>Update Employee</h2>
+        <div id="error-message" style="color:red;"></div>
+        <form id="updateForm">
+            <label>Employee Name:
+                <input type="text" id="empname" required>
+            </label><br>
+            <label>Date of Birth:
+                <input type="date" id="dob" required>
+            </label><br>
+            <label>Date of Joining:
+                <input type="datetime-local" id="doj" required>
+            </label><br>
+            <label>Department ID:
+                <input type="number" id="deptid" required>
+            </label><br>
+            <button type="button" onclick="updateEmployee()">Update</button>
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2025 Employee Management System
+    </footer>
+    
+    <script src="../JS/updateemp.js"></script>
+</body>
+</html>
