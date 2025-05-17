@@ -25,7 +25,8 @@ function loadEmployees() {
                     <td>${emp.department ? emp.department.deptname : 'N/A'}</td>
                     <td class="action-buttons">
                         <button onclick="editEmployee(${emp.empid})">Edit</button>
-                       
+                       <button onclick="deleteEmployee(${emp.empid})">Delete</button>
+
                     </td>
                 `;
                 tbody.appendChild(row);
@@ -81,4 +82,32 @@ function editEmployee(id) {
     localStorage.setItem("editEmpId", id);
     window.location.href = "../HTML/updateemp.html";
 }
+
+function deleteEmployee(empId) {
+    if (!confirm("Are you sure you want to delete this employee?")) return;
+
+    fetch(`http://localhost:8083/api/employees/${empId}`, {
+        method: "DELETE"
+    })
+    .then(response => {
+        if (response.status === 204) {
+            alert("Employee deleted successfully!");
+            loadEmployees(); // Refresh list
+        } else if (response.status === 404) {
+            alert("Employee not found!");
+        } else {
+            throw new Error("Unexpected error occurred");
+        }
+    })
+    .catch(error => {
+        console.error("Delete error:", error);
+        alert("Error deleting employee");
+    });
+}
+
+
+function logout() {
+    window.location.href = 'login.html';
+}
+
 
