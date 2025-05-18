@@ -104,7 +104,50 @@ function deleteEmployee(empId) {
         alert("Error deleting employee");
     });
 }
+function searchEmployeeById() {
+    const id = document.getElementById("searchByIdInput").value;
+    if (!id) {
+        alert("Please enter an Employee ID");
+        return;
+    }
 
+    fetch(`http://localhost:8083/api/employees/${id}`)
+        .then(response => {
+            if (response.status === 404) {
+                throw new Error("Employee not found");
+            }
+            if (!response.ok) {
+                throw new Error("Something went wrong");
+            }
+            return response.json();
+        })
+        .then(emp => {
+            const table = document.getElementById("employeeTable");
+            const tbody = document.getElementById("employeeBody");
+            tbody.innerHTML = "";
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${emp.empid || 'N/A'}</td>
+                <td>${emp.empname || 'N/A'}</td>
+                <td>${emp.dob || 'N/A'}</td>
+                <td>${emp.dateOfJoining || 'N/A'}</td>
+                <td>${emp.department ? emp.department.deptname : 'N/A'}</td>
+                <td class="action-buttons">
+                    <button onclick="editEmployee(${emp.empid})">Edit</button>
+                    <button onclick="deleteEmployee(${emp.empid})">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(row);
+            table.style.display = "table";
+        })
+        .catch(error => {
+            const table = document.getElementById("employeeTable");
+            const tbody = document.getElementById("employeeBody");
+            tbody.innerHTML = `<tr><td colspan='6'>${error.message}</td></tr>`;
+            table.style.display = "table";
+        });
+}
 
 function logout() {
     window.location.href = 'login.html';
