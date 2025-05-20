@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Department</title>
+  <link rel="stylesheet" href="../CSS/updateemp.css">
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Employee System</h2>
+    <button onclick="location.href='Dashboard.html'">Dashboard</button>
+    <button onclick="location.href='GetAllEmployees.html'">Employees</button>
+    <button onclick="location.href='department.html'">Departments</button>
+    <button onclick="logout()" style="margin-top:auto; background-color:#e74c3c;">Logout</button>
+  </div>
+
+  <div class="content">
+    <div class="form-container">
+      <h2>Create Department</h2>
+      <form id="createDeptForm">
+        <div class="form-group">
+          <label for="deptname">Department Name:</label>
+          <input type="text" id="deptname" placeholder="Enter department name" required />
+        </div>
+        <button type="button" onclick="createDepartment()">Add Department</button>
+        <p id="error-message" style="color:red;"></p>
+        <button type="button" onclick="location.href='GetAllDepartments.html'">Back to List</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Employee Management System
+  </footer>
+
+  <script>
+    function createDepartment() {
+      const deptname = document.getElementById("deptname").value;
+
+      if (!deptname.trim()) {
+        document.getElementById("error-message").textContent = "Department name is required.";
+        return;
+      }
+
+      fetch("http://localhost:8083/api/departments/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ deptname })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to create department");
+        return res.json();
+      })
+      .then(() => {
+        alert("Department created successfully!");
+        window.location.href = "GetAllDepartments.html";
+      })
+      .catch(() => {
+        document.getElementById("error-message").textContent = "Error while creating department.";
+      });
+    }
+
+    function logout() {
+      alert("Logged out");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
