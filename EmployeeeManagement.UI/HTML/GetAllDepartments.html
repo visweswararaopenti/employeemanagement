@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Departments</title>
+    <link rel="stylesheet" href="../CSS/employee.css"> 
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Employee System</h2>
+        <a href="Dashboard.html"><button>Dashboard</button></a>
+        <a href="GetAllEmployees.html"><button>Employees</button></a>
+        <a href="GetAllDepartments.html"><button>Departments</button></a>
+        <button onclick="logout()" style="margin-top:auto; background-color:#e74c3c;">Logout</button>
+    </div>
+
+    <div class="content">
+        <div class="top-controls">
+            <button onclick="loadDepartments()">Load All Departments</button>
+
+            <div class="search-box">
+                <input type="number" id="searchDeptIdInput" placeholder="Enter Department ID">
+                <button onclick="searchDepartmentById()">Search by ID</button>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button onclick="window.location.href='CreateDepartment.html'" class="create-btn large-btn">
+                Create Department
+            </button>
+        </div>
+
+        <div class="heading-box">
+            <h2 style="text-align: center;">Department List</h2>
+        </div>
+
+        <table id="departmentTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th style="background-color: #007bff; color: white;">Department ID</th>
+                    <th style="background-color: #007bff; color: white;">Department Name</th>
+                    <th style="background-color: #007bff; color: white;">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="departmentBody">
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        &copy; 2025 Employee Management System
+    </footer>
+
+    <script src="../JS/department.js"></script>
+</body>
+</html>

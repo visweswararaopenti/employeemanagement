@@ -94,7 +94,7 @@ table {
 
 th, td {
   border: 1px solid #ccc;
-  padding: 12px;
+  padding: 10px 10px;
   text-align: left;
 }
 
@@ -111,7 +111,7 @@ footer {
   color: white;
   text-align: center;
   padding: 15px;
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 220px;
   width: calc(100% - 220px);
