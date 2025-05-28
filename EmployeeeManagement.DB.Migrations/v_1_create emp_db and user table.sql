@@ -1,8 +1,0 @@
-
-CREATE DATABASE IF NOT EXISTS emp_db;
-USE emp_db;
-CREATE TABLE IF NOT EXISTS emp_db.user (
-    userid INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL
-);
