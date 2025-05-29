@@ -20,6 +20,8 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer empid;
 	private String empname;
+	private String email;
+	private String mobile;
 	private LocalDate dob;
 
 	@Column(name = "date_of_joining")
@@ -67,5 +69,20 @@ public class Employee {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 }
